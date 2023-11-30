@@ -15,7 +15,7 @@ const LoginLayout: React.FC = () => {
                 <LoginModal/>
             </div>
             <div className="flex mx-auto p-4 text-gray-400">
-                <p>Sean Preston - 2023</p>
+                <p>Sean Preston - 2023 - GitHub</p>
             </div>
         </div>
     );
