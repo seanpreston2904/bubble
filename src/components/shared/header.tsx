@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import profilePhoto from '../../assets/profile.jpg';
 import AccountModal from './accountModal';
 import logo from '../../assets/logo.png';
 import { useNavigate } from 'react-router-dom';

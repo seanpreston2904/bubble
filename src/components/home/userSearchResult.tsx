@@ -1,4 +1,4 @@
-import { PersonFill, PersonFillAdd } from "react-bootstrap-icons";
+import { PersonFillAdd } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 
 interface UserSearchResultProps {

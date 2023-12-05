@@ -1,21 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import profilePhoto from "../../assets/profile.jpg"
 import { CameraFill, EnvelopeAtFill, Key, KeyFill, PersonFill } from "react-bootstrap-icons";
-import { auth, db, registerUser } from "../../firebase";
-import { useEffect, useRef, useState } from "react";
+import { registerUser } from "../../firebase";
+import { useRef, useState } from "react";
 import logo from "../../assets/logo.png"
 import { ChangeEvent } from "react";
-import { AuthError, UserCredential, onAuthStateChanged } from "firebase/auth";
-import { doc } from "firebase/firestore";
-import { useUserData } from "../../contexts/userData/userDataHook";
-import { UserDataContextActions } from "../../contexts/userData/userDataTypes";
 import sampleProfilePhoto from "../../assets/sampleProfilePhoto.png"
 
 interface RegisterModalProps {
     defaultUsername?: string
 }
 
-const RegisterModal: React.FC<RegisterModalProps> = (props) => {
+const RegisterModal: React.FC<RegisterModalProps> = () => {
 
     const navigate = useNavigate();
 

@@ -1,7 +1,6 @@
 import { Navigate } from "react-router-dom";
 import LoginModal from "../components/shared/login/loginModal";
 import { useUserData } from "../contexts/userData/userDataHook";
-import { useEffect } from "react";
 
 const LoginLayout: React.FC = () => {
 

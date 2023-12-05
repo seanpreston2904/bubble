@@ -2,16 +2,12 @@ import { Search } from "react-bootstrap-icons";
 import FeedToggle from "../components/shared/feedToggle";
 import Post from "../components/shared/post/post";
 import { useState } from "react";
-import { useUserData } from "../contexts/userData/userDataHook";
 import UserSearchResult from "../components/home/userSearchResult";
 
 const HomeLayout: React.FC = () => {
 
     // Stores the filtered results of searching for friends.
     const [searchResults, setSearchResults] = useState<{name: string, imageUrl: string}[] | null>(null);
-
-    // Use user data state
-    const {state} = useUserData();
 
     // Temporary storage for a users friends (will eventually be moved to state, which can be populated upon authentication)
     const [friends] = useState(

@@ -1,4 +1,4 @@
-import { EnvelopeAtFill, KeyFill, PersonFill } from "react-bootstrap-icons";
+import { EnvelopeAtFill, KeyFill } from "react-bootstrap-icons";
 import logo from "../../../assets/logo.png"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";

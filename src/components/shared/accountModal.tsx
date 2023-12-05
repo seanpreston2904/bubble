@@ -1,7 +1,5 @@
 import { BoxArrowLeft, GearFill, PersonFill } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
-import { useUserData } from "../../contexts/userData/userDataHook";
-import { UserDataContextActions } from "../../contexts/userData/userDataTypes";
 import { logout } from "../../firebase";
 
 const AccountModal: React.FC = () => {
