@@ -7,18 +7,23 @@ import AccountLayout from './routes/accountLayout.tsx'
 import LoginLayout from './routes/loginLayout.tsx'
 import MainLayout from './routes/mainLayout.tsx'
 import { UserDataContextProvider } from './contexts/userData/userDataContext.tsx'
+import RegisterLayout from './routes/registerLayout.tsx'
 
 const router = createBrowserRouter([
   {
-    path: "/login",
+    path: "/",
     element: <LoginLayout/>
   },
   {
-    path:"/",
+    path: "/register",
+    element: <RegisterLayout/>
+  },
+  {
+    path:"/app",
     element: <MainLayout/>,
     children: [
       {
-        path: "/",
+        path: "/app",
         element: <HomeLayout/>
       },
       {

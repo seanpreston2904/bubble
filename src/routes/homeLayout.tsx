@@ -1,10 +1,9 @@
 import { Search } from "react-bootstrap-icons";
-import Friend from "../components/home/friend";
 import FeedToggle from "../components/shared/feedToggle";
 import Post from "../components/shared/post/post";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
 import { useUserData } from "../contexts/userData/userDataHook";
+import UserSearchResult from "../components/home/userSearchResult";
 
 const HomeLayout: React.FC = () => {
 
@@ -32,8 +31,23 @@ const HomeLayout: React.FC = () => {
         ]
     );
 
-    // If user is not logged in - force them to login page.
-    if(!state.isAuthenticated){ return <Navigate to="/login"/> }
+    // Temporary storage for other users (will eventually be moved to state, which can be populated upon not finding any friends)
+    const [otherUsers] = useState(
+        [
+            {
+                name: "Barry554",
+                imageUrl: "https://images.unsplash.com/photo-1525457136159-8878648a7ad0?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG1hbGV8ZW58MHx8MHx8fDA%3D"
+            },
+            {
+                name: "TheTotalTerry",
+                imageUrl: "https://img.mensxp.com/media/content/2020/May/Girl-Uses-Fake-Guy-Profile-To-Test-Friends-Character3_5eb954b01d688.jpeg"
+            },
+            {
+                name: "Jamie95Paulson",
+                imageUrl: "https://christophertoddstudios.com/wp-content/uploads/2022/11/MarcyM-Headshot-111-683x1024.jpeg"
+            },
+        ]
+    );
 
     return(
         <div className="flex relative">
@@ -86,15 +100,24 @@ const HomeLayout: React.FC = () => {
                     searchResults !== null ? (
                         searchResults.length > 0 ? (
                             searchResults.map(friend => (
-                                <Friend key={friend.name} name={friend.name} photoUrl={friend.imageUrl} />
+                                <UserSearchResult key={friend.name} name={friend.name} photoUrl={friend.imageUrl} showAddButton={false}/>
                             ))
                         ) : (
-                            <div className="flex flex-col w-full">
+                            <div className="flex flex-col w-full space-y-2 text-gray-800">
                                 <p className="mx-auto font-semibold">No Friends Found!</p>
+                                <hr/>
+                                <p className="mx-auto font-semibold">Other Users</p>
+                                <div className="flex flex-col space-y-2">
+                                {
+                                    otherUsers.map(
+                                        user => <UserSearchResult key={user.name} name={user.name} photoUrl={user.imageUrl} showAddButton={true}/>
+                                    )
+                                }
+                                </div>
                             </div>
                         )
                     ) : ( friends.map(friend => (
-                                <Friend key={friend.name} name={friend.name} photoUrl={friend.imageUrl} />
+                                <UserSearchResult key={friend.name} name={friend.name} photoUrl={friend.imageUrl} showAddButton={false}/>
                             )
                         )
                     )

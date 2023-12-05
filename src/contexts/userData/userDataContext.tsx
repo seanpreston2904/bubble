@@ -1,9 +1,10 @@
 import { ReactNode, createContext, useReducer } from "react";
-import { UserDataContextActions, UserDataContextType, UserDataStateType } from "./userDataTypes";
+import { UserDataContextAction, UserDataContextActions, UserDataContextType, UserDataStateType } from "./userDataTypes";
 
 // Define default state
 export const UserDataContextDefaultState: UserDataStateType = {
-    isAuthenticated: false
+    isAuthenticated: false,
+    userData: undefined
 }
 
 // Create user data context with default data.
@@ -20,18 +21,33 @@ export const UserDataContext = createContext<UserDataContextType>({
  * @param action the action to be performed on the context
  * @returns 
  */
-const userDataReducer = (state: UserDataStateType, action: UserDataContextActions) => {
+const userDataReducer = (state: UserDataStateType, action: UserDataContextAction) => {
 
     // Clone current state.
     var updatedState: UserDataStateType = { ...state };
+
+    console.log("REDUCER HIT")
     
     // Update state based on action.
-    switch(action) {
-        case UserDataContextActions.LogIn:
-            updatedState.isAuthenticated = true;
-            break;
-        case UserDataContextActions.LogOut:
+    switch(action.type) {
+        case UserDataContextActions.UnloadUserData:
             updatedState.isAuthenticated = false;
+            updatedState.userData = undefined;
+            break;
+        case UserDataContextActions.LoadUserData:
+
+            console.log("FROM USER DATA CONTEXT - "+action.payload.newProfilePhotoUrl)
+
+            // Update authentication state.
+            updatedState.isAuthenticated = true;
+
+            // Append new user data to state.
+            updatedState.userData = {
+                userName: action.payload.newUserName,
+                profilePhotoUrl: action.payload.newProfilePhotoUrl,
+                email: action.payload.newEmail
+            }
+
             break;
     };
 
